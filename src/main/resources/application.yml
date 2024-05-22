@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: stock
+  datasource:
+    url: jdbc:mariadb://mysql-nathand59.alwaysdata.net/nathand59_stockdb
+    username: nathand59_stock
+    password: josepossedeunzoo
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+mqtt:
+  broker:
+    url: tcp://localhost:1883 # sécurisé , sinon 8883
+  client:
+    id: stock-app
+  username: user-app
+  password: josepossedeunzoo
