@@ -17,11 +17,14 @@ def on_connect(client, userdata, flags, rc):
         print("problem , rc : " + str(rc))
 
 
-def thread_pub(mqttc, numero_salle):
+def thread_pub(mqttc):
     while True:
         data = {"date": datetime.now().isoformat(),
-                "temperature": uniform(seuil_min, seuil_max)}
-        mqttc.publish("temperature/room/" + str(numero_salle), json.dumps(data))
+                "action": "AJOUT",
+                "produit_id":1,
+                "quantite":1
+                }
+        mqttc.publish("produit", json.dumps(data))
         time.sleep(1)
 
 
@@ -29,10 +32,10 @@ mqttc = mqtt.Client("pub")
 mqttc.on_connect = on_connect
 mqttc.connect("localhost", 1883, 60)
 
-room1 = threading.Thread(target=thread_pub, args=(mqttc, 1))
-room2 = threading.Thread(target=thread_pub, args=(mqttc, 2))
-room3 = threading.Thread(target=thread_pub, args=(mqttc, 3))
-room4 = threading.Thread(target=thread_pub, args=(mqttc, 4))
+room1 = threading.Thread(target=thread_pub, args=(mqttc))
+room2 = threading.Thread(target=thread_pub, args=(mqttc))
+room3 = threading.Thread(target=thread_pub, args=(mqttc))
+room4 = threading.Thread(target=thread_pub, args=(mqttc))
 
 room1.start()
 room2.start()
