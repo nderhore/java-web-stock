@@ -9,8 +9,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
-
+      ddl-auto: create-drop
 mqtt:
   broker:
     url: tcp://localhost:1883 # sécurisé , sinon 8883
@@ -18,3 +17,5 @@ mqtt:
     id: stock-app
   username: user-app
   password: josepossedeunzoo
+server:
+  port: 8081
